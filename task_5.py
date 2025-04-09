@@ -1,8 +1,27 @@
 class TestCase:
 
-    def __init__(self):
-   ...
-   ...
+    def __init__(self, steps={}, result=None):
+        self.steps = steps
+        self.result = result
+
+    def set_step(self, step_number, step_text):
+        self.steps[step_number] = step_text
+
+    def delete_step(self, step_number):
+        if step_number in self.steps:
+            del self.steps[step_number]
+
+    def set_result(self, result):
+        self.result = result
+
+    def get_test_case(self):
+        print({
+        'Шаги': self.steps,
+        'Ожидаемый результат': self.result
+        })
+
+
+
 
 test_case_1 = TestCase()
 test_case_1.set_step(1, 'Перейти на сайт')
@@ -19,3 +38,14 @@ test_case_2.set_step(2, 'Перейти в раздел Корзина')
 test_case_2.set_step(3, 'Нажать кнопку "Удалить"')
 test_case_2.set_result('Товар удален из корзины')
 test_case_2.get_test_case()
+
+"""
+{       
+    'Шаги': {
+            1: 'Перейти на сайт', 
+            2: 'Перейти в раздел Товары', 
+            3: 'Нажать кнопку «В корзину» у первого товара'
+    }, 
+    'Ожидаемый результат': 'Товар окажется в корзине'
+}
+"""
